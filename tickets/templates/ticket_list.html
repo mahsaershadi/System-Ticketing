@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tickets</title>
+</head>
+
+<body>
+
+    <h1>Tickets</h1>
+
+    <p>
+        Welcome, {{ request.user.username }}
+    </p>
+
+    <a href="{% url 'ticket_create' %}">
+        Create Ticket
+    </a>
+
+    <a href="{% url 'logout' %}">
+        Logout
+    </a>
+
+    <hr>
+
+    {% for ticket in tickets %}
+
+        <article>
+
+            <h2>
+                <a href="{% url 'ticket_detail' ticket.pk %}">
+                    {{ ticket.title }}
+                </a>
+            </h2>
+
+            <p>
+                Priority: {{ ticket.get_priority_display }}
+            </p>
+
+            <p>
+                Status: {{ ticket.get_status_display }}
+            </p>
+
+            <p>
+                Created: {{ ticket.created_at }}
+            </p>
+
+        </article>
+
+        <hr>
+
+    {% empty %}
+
+        <p>No tickets yet.</p>
+
+    {% endfor %}
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ ticket.title }}</title>
+</head>
+
+<body>
+
+    <h1>{{ ticket.title }}</h1>
+
+    <p>
+        {{ ticket.description }}
+    </p>
+
+    <p>
+        Priority:
+        {{ ticket.get_priority_display }}
+    </p>
+
+    <p>
+        Status:
+        {{ ticket.get_status_display }}
+    </p>
+
+    <p>
+        Created by:
+        {{ ticket.created_by.username }}
+    </p>
+
+    <a href="{% url 'ticket_update' ticket.pk %}">
+        Edit
+    </a>
+
+    <a href="{% url 'ticket_delete' ticket.pk %}">
+        Delete
+    </a>
+
+    <a href="{% url 'ticket_list' %}">
+        Back to tickets
+    </a>
+
+</body>
+</html>
