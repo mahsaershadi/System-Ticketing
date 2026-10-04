@@ -23,6 +23,101 @@
 
     <hr>
 
+<form method="GET">
+
+    <label for="status">
+        Status:
+    </label>
+
+    <select name="status" id="status">
+
+        <option value="">
+            All statuses
+        </option>
+
+        <option value="OPEN"
+            {% if selected_status == "OPEN" %}selected{% endif %}>
+            Open
+        </option>
+
+        <option value="IN_PROGRESS"
+            {% if selected_status == "IN_PROGRESS" %}selected{% endif %}>
+            In Progress
+        </option>
+
+        <option value="CLOSED"
+            {% if selected_status == "CLOSED" %}selected{% endif %}>
+            Closed
+        </option>
+
+    </select>
+
+
+    <label for="priority">
+        Priority:
+    </label>
+
+    <select name="priority" id="priority">
+
+        <option value="">
+            All priorities
+        </option>
+
+        <option value="LOW"
+            {% if selected_priority == "LOW" %}selected{% endif %}>
+            Low
+        </option>
+
+        <option value="MEDIUM"
+            {% if selected_priority == "MEDIUM" %}selected{% endif %}>
+            Medium
+        </option>
+
+        <option value="HIGH"
+            {% if selected_priority == "HIGH" %}selected{% endif %}>
+            High
+        </option>
+
+    </select>
+
+
+    <label for="sort">
+        Sort:
+    </label>
+
+    <select name="sort" id="sort">
+
+        <option value="">
+            Newest first
+        </option>
+
+        <option value="oldest"
+            {% if selected_sort == "oldest" %}selected{% endif %}>
+            Oldest first
+        </option>
+
+        <option value="priority"
+            {% if selected_sort == "priority" %}selected{% endif %}>
+            Priority
+        </option>
+
+    </select>
+
+
+    <button type="submit">
+        Apply
+    </button>
+
+    <a href="{% url 'ticket_list' %}">
+        Clear
+    </a>
+
+</form>
+
+<hr>
+
+    <hr>
+
     {% for ticket in tickets %}
 
         <article>
