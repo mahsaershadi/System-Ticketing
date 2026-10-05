@@ -1,0 +1,920 @@
+/* ========================================
+   RESET
+======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    min-height: 100vh;
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background: #0F111A;
+    color: #F4F4F5;
+
+    line-height: 1.6;
+}
+
+
+/* ========================================
+   COLORS
+======================================== */
+
+:root {
+    --background: #0F111A;
+    --surface: #171A26;
+    --surface-light: #1E2230;
+
+    --primary: #8B5CF6;
+    --primary-hover: #A78BFA;
+
+    --text: #F4F4F5;
+    --text-muted: #A1A1AA;
+
+    --border: #2A2E3B;
+
+    --success: #34D399;
+    --warning: #FBBF24;
+    --danger: #F87171;
+    --info: #60A5FA;
+
+    --radius: 12px;
+    --radius-small: 8px;
+}
+
+
+/* ========================================
+   NAVBAR
+======================================== */
+
+.navbar {
+    height: 72px;
+
+    background: rgba(15, 17, 26, 0.9);
+
+    border-bottom: 1px solid var(--border);
+
+    position: sticky;
+    top: 0;
+
+    z-index: 100;
+
+    backdrop-filter: blur(12px);
+}
+
+
+.nav-container {
+    max-width: 1200px;
+
+    height: 100%;
+
+    margin: 0 auto;
+    padding: 0 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: var(--text);
+
+    text-decoration: none;
+
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+
+.brand-icon {
+    color: var(--primary);
+
+    font-size: 25px;
+}
+
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+
+.nav-links a {
+    color: var(--text-muted);
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    transition: color 0.2s ease;
+}
+
+
+.nav-links a:hover {
+    color: var(--text);
+}
+
+
+.nav-links .nav-button {
+    background: var(--primary);
+
+    color: white;
+
+    padding: 9px 15px;
+
+    border-radius: var(--radius-small);
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.nav-links .nav-button:hover {
+    background: var(--primary-hover);
+
+    color: white;
+
+    transform: translateY(-1px);
+}
+
+
+/* ========================================
+   MAIN
+======================================== */
+
+.main-container {
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 48px 24px;
+
+    min-height: calc(100vh - 140px);
+}
+
+
+/* ========================================
+   FOOTER
+======================================== */
+
+.footer {
+    border-top: 1px solid var(--border);
+
+    text-align: center;
+
+    padding: 24px;
+
+    color: var(--text-muted);
+
+    font-size: 13px;
+}
+
+
+/* ========================================
+   HEADINGS
+======================================== */
+
+h1 {
+    font-size: 34px;
+
+    line-height: 1.2;
+
+    letter-spacing: -1px;
+
+    margin-bottom: 10px;
+}
+
+
+h2 {
+    font-size: 21px;
+
+    margin-bottom: 8px;
+}
+
+
+p {
+    color: var(--text-muted);
+}
+
+
+/* ========================================
+   BUTTONS
+======================================== */
+
+button,
+.button {
+    border: none;
+
+    background: var(--primary);
+
+    color: white;
+
+    padding: 10px 17px;
+
+    border-radius: var(--radius-small);
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+button:hover,
+.button:hover {
+    background: var(--primary-hover);
+
+    transform: translateY(-1px);
+}
+
+
+.button-secondary {
+    background: var(--surface-light);
+
+    border: 1px solid var(--border);
+
+    color: var(--text);
+}
+
+
+.button-danger {
+    background: var(--danger);
+}
+
+
+.button-danger:hover {
+    background: #EF4444;
+}
+
+
+/* ========================================
+   FORMS
+======================================== */
+
+.form-container {
+    max-width: 600px;
+
+    margin: 30px auto;
+}
+
+
+.form-card {
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    padding: 32px;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+
+label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--text);
+
+    font-size: 14px;
+
+    font-weight: 500;
+}
+
+
+input,
+textarea,
+select {
+    width: 100%;
+
+    background: var(--surface-light);
+
+    color: var(--text);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-small);
+
+    padding: 11px 13px;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(139, 92, 246, 0.15);
+}
+
+
+textarea {
+    min-height: 150px;
+
+    resize: vertical;
+}
+
+
+/* Django form errors */
+
+.errorlist {
+    list-style: none;
+
+    color: var(--danger);
+
+    font-size: 13px;
+
+    margin-bottom: 8px;
+}
+
+
+/* ========================================
+   ALERTS
+======================================== */
+
+.alert {
+    background: rgba(96, 165, 250, 0.1);
+
+    border: 1px solid rgba(96, 165, 250, 0.25);
+
+    color: var(--info);
+
+    padding: 13px 16px;
+
+    border-radius: var(--radius-small);
+
+    margin-bottom: 24px;
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 700px) {
+
+    .navbar {
+        height: auto;
+    }
+
+
+    .nav-container {
+        padding: 16px;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+
+    .nav-links {
+        width: 100%;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 14px;
+    }
+
+
+    .main-container {
+        padding: 30px 16px;
+    }
+
+
+    h1 {
+        font-size: 28px;
+    }
+
+
+    .form-card {
+        padding: 22px;
+    }
+}
+
+/* ========================================
+   PAGE HEADER
+======================================== */
+
+.page-header {
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    margin-bottom: 36px;
+}
+
+
+.eyebrow {
+    color: var(--primary);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 8px;
+}
+
+
+/* ========================================
+   FILTER CARD
+======================================== */
+
+.filter-card {
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    padding: 20px;
+
+    margin-bottom: 35px;
+}
+
+
+.filter-form {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr 1fr auto;
+
+    align-items: end;
+
+    gap: 15px;
+}
+
+
+.filter-field {
+    min-width: 0;
+}
+
+
+.filter-actions {
+    display: flex;
+
+    gap: 8px;
+}
+
+
+/* ========================================
+   SECTION HEADER
+======================================== */
+
+.section-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+}
+
+
+.section-header h2 {
+    margin: 0;
+}
+
+
+.ticket-count {
+    color: var(--text-muted);
+
+    font-size: 13px;
+}
+
+
+/* ========================================
+   TICKET CARD
+======================================== */
+
+.ticket-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+
+.ticket-card {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    padding: 22px;
+
+    text-decoration: none;
+
+    color: inherit;
+
+    transition:
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.ticket-card:hover {
+    border-color: rgba(139, 92, 246, 0.5);
+
+    background: var(--surface-light);
+
+    transform: translateY(-2px);
+}
+
+
+.ticket-title-row {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+}
+
+
+.ticket-title-row h2 {
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: 17px;
+}
+
+
+.ticket-description {
+    margin-top: 7px;
+
+    font-size: 14px;
+}
+
+
+.ticket-meta {
+    display: flex;
+
+    gap: 8px;
+
+    margin-top: 13px;
+
+    color: var(--text-muted);
+
+    font-size: 12px;
+}
+
+
+.ticket-side {
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    flex-shrink: 0;
+}
+
+
+.arrow {
+    color: var(--text-muted);
+
+    font-size: 20px;
+
+    transition: transform 0.2s ease;
+}
+
+
+.ticket-card:hover .arrow {
+    color: var(--primary);
+
+    transform: translateX(4px);
+}
+
+
+/* ========================================
+   STATUS BADGES
+======================================== */
+
+.status,
+.priority {
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 5px 10px;
+
+    border-radius: 999px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+.status-open {
+    background: rgba(96, 165, 250, 0.12);
+
+    color: var(--info);
+}
+
+
+.status-in_progress {
+    background: rgba(251, 191, 36, 0.12);
+
+    color: var(--warning);
+}
+
+
+.status-closed {
+    background: rgba(52, 211, 153, 0.12);
+
+    color: var(--success);
+}
+
+
+.priority-high {
+    color: var(--danger);
+
+    background: rgba(248, 113, 113, 0.1);
+}
+
+
+.priority-medium {
+    color: var(--warning);
+
+    background: rgba(251, 191, 36, 0.1);
+}
+
+
+.priority-low {
+    color: var(--success);
+
+    background: rgba(52, 211, 153, 0.1);
+}
+
+
+/* ========================================
+   EMPTY STATE
+======================================== */
+
+.empty-state {
+    text-align: center;
+
+    background: var(--surface);
+
+    border: 1px dashed var(--border);
+
+    border-radius: var(--radius);
+
+    padding: 70px 30px;
+}
+
+
+.empty-icon {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 55px;
+    height: 55px;
+
+    margin-bottom: 18px;
+
+    border-radius: 15px;
+
+    background: rgba(139, 92, 246, 0.12);
+
+    color: var(--primary);
+
+    font-size: 24px;
+}
+
+
+.empty-state h2 {
+    margin-bottom: 5px;
+}
+
+
+.empty-state .button {
+    display: inline-block;
+
+    margin-top: 20px;
+}
+
+
+/* ========================================
+   RESPONSIVE TICKETS
+======================================== */
+
+@media (max-width: 850px) {
+
+    .filter-form {
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+    .filter-actions {
+        grid-column: 1 / -1;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .page-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+
+    .filter-form {
+        grid-template-columns: 1fr;
+    }
+
+
+    .filter-actions {
+        grid-column: auto;
+    }
+
+
+    .ticket-card {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+
+    .ticket-side {
+        width: 100%;
+
+        justify-content: space-between;
+    }
+}
+
+/* ========================================
+   AUTH PAGES
+======================================== */
+
+.auth-container {
+    width: 100%;
+
+    max-width: 430px;
+
+    margin: 45px auto;
+}
+
+
+.auth-header {
+    text-align: center;
+
+    margin-bottom: 25px;
+}
+
+
+.auth-logo {
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 20px;
+
+    border-radius: 17px;
+
+    background: rgba(139, 92, 246, 0.14);
+
+    color: var(--primary);
+
+    font-size: 27px;
+}
+
+
+.auth-header h1 {
+    font-size: 29px;
+
+    margin-bottom: 7px;
+}
+
+
+.full-button {
+    width: 100%;
+
+    margin-top: 8px;
+
+    padding: 12px;
+}
+
+
+.auth-footer {
+    text-align: center;
+
+    margin-top: 20px;
+
+    font-size: 14px;
+}
+
+
+.auth-footer a {
+    color: var(--primary);
+
+    text-decoration: none;
+
+    font-weight: 600;
+}
+
+
+.auth-footer a:hover {
+    color: var(--primary-hover);
+}
+
+.form-card form p {
+    margin-bottom: 18px;
+}
+
+
+.form-card form p label {
+    display: block;
+}
+
+
+.form-card form ul {
+    margin-top: 6px;
+
+    padding-left: 18px;
+
+    color: var(--text-muted);
+
+    font-size: 12px;
+}

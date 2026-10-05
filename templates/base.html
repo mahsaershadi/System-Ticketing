@@ -1,0 +1,88 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {% block title %}Tickify{% endblock %}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'style.css' %}"
+    >
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="nav-container">
+
+            <a href="{% url 'ticket_list' %}" class="brand">
+                <span class="brand-icon">◈</span>
+                Tickify
+            </a>
+
+            {% if user.is_authenticated %}
+
+                <div class="nav-links">
+
+                    <a href="{% url 'ticket_list' %}">
+                        Dashboard
+                    </a>
+
+                    <a
+                        href="{% url 'ticket_create' %}"
+                        class="nav-button"
+                    >
+                        + New Ticket
+                    </a>
+
+                    <a href="{% url 'logout' %}">
+                        Logout
+                    </a>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </nav>
+
+
+    <main class="main-container">
+
+        {% if messages %}
+
+            {% for message in messages %}
+
+                <div class="alert">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+
+    <footer class="footer">
+        <p>Tickify · Ticket Management System</p>
+    </footer>
+
+</body>
+</html>

@@ -1,28 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Register</title>
-</head>
+{% extends "base.html" %}
 
-<body>
+{% block title %}Create Account · Tickify{% endblock %}
 
-    <h1>Create Account</h1>
 
-    <form method="POST">
-        {% csrf_token %}
+{% block content %}
 
-        {{ form.as_p }}
+<div class="auth-container">
 
-        <button type="submit">
-            Register
-        </button>
-    </form>
+    <div class="auth-header">
 
-    <p>
+        <div class="auth-logo">
+            ◈
+        </div>
+
+        <h1>
+            Create your account
+        </h1>
+
+        <p>
+            Start managing your organization's tickets.
+        </p>
+
+    </div>
+
+
+    <div class="form-card">
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button
+                type="submit"
+                class="full-button"
+            >
+                Create Account
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <p class="auth-footer">
         Already have an account?
-        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'login' %}">
+            Sign in
+        </a>
     </p>
 
-</body>
-</html>
+</div>
+
+{% endblock %}

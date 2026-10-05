@@ -1,154 +1,283 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Tickets</title>
-</head>
+{% extends "base.html" %}
 
-<body>
+{% block title %}Dashboard · Tickify{% endblock %}
 
-    <h1>Tickets</h1>
 
-    <p>
-        Welcome, {{ request.user.username }}
-    </p>
+{% block content %}
 
-    <a href="{% url 'ticket_create' %}">
-        Create Ticket
+<div class="page-header">
+
+    <div>
+        <p class="eyebrow">
+            TICKET MANAGEMENT
+        </p>
+
+        <h1>
+            Welcome, {{ request.user.username }}
+        </h1>
+
+        <p>
+            Manage and track your organization's tickets.
+        </p>
+    </div>
+
+    <a
+        href="{% url 'ticket_create' %}"
+        class="button"
+    >
+        + Create Ticket
     </a>
 
-    <a href="{% url 'logout' %}">
-        Logout
-    </a>
-
-    <hr>
-
-<form method="GET">
-
-    <label for="status">
-        Status:
-    </label>
-
-    <select name="status" id="status">
-
-        <option value="">
-            All statuses
-        </option>
-
-        <option value="OPEN"
-            {% if selected_status == "OPEN" %}selected{% endif %}>
-            Open
-        </option>
-
-        <option value="IN_PROGRESS"
-            {% if selected_status == "IN_PROGRESS" %}selected{% endif %}>
-            In Progress
-        </option>
-
-        <option value="CLOSED"
-            {% if selected_status == "CLOSED" %}selected{% endif %}>
-            Closed
-        </option>
-
-    </select>
+</div>
 
 
-    <label for="priority">
-        Priority:
-    </label>
+<!-- FILTERS -->
 
-    <select name="priority" id="priority">
+<div class="filter-card">
 
-        <option value="">
-            All priorities
-        </option>
+    <form method="GET" class="filter-form">
 
-        <option value="LOW"
-            {% if selected_priority == "LOW" %}selected{% endif %}>
-            Low
-        </option>
+        <div class="filter-field">
 
-        <option value="MEDIUM"
-            {% if selected_priority == "MEDIUM" %}selected{% endif %}>
-            Medium
-        </option>
+            <label for="status">
+                Status
+            </label>
 
-        <option value="HIGH"
-            {% if selected_priority == "HIGH" %}selected{% endif %}>
-            High
-        </option>
+            <select name="status" id="status">
 
-    </select>
+                <option value="">
+                    All statuses
+                </option>
 
+                <option value="OPEN"
+                    {% if selected_status == "OPEN" %}
+                        selected
+                    {% endif %}
+                >
+                    Open
+                </option>
 
-    <label for="sort">
-        Sort:
-    </label>
+                <option value="IN_PROGRESS"
+                    {% if selected_status == "IN_PROGRESS" %}
+                        selected
+                    {% endif %}
+                >
+                    In Progress
+                </option>
 
-    <select name="sort" id="sort">
+                <option value="CLOSED"
+                    {% if selected_status == "CLOSED" %}
+                        selected
+                    {% endif %}
+                >
+                    Closed
+                </option>
 
-        <option value="">
-            Newest first
-        </option>
+            </select>
 
-        <option value="oldest"
-            {% if selected_sort == "oldest" %}selected{% endif %}>
-            Oldest first
-        </option>
-
-        <option value="priority"
-            {% if selected_sort == "priority" %}selected{% endif %}>
-            Priority
-        </option>
-
-    </select>
+        </div>
 
 
-    <button type="submit">
-        Apply
-    </button>
+        <div class="filter-field">
 
-    <a href="{% url 'ticket_list' %}">
-        Clear
-    </a>
+            <label for="priority">
+                Priority
+            </label>
 
-</form>
+            <select name="priority" id="priority">
 
-<hr>
+                <option value="">
+                    All priorities
+                </option>
 
-    <hr>
+                <option value="LOW"
+                    {% if selected_priority == "LOW" %}
+                        selected
+                    {% endif %}
+                >
+                    Low
+                </option>
+
+                <option value="MEDIUM"
+                    {% if selected_priority == "MEDIUM" %}
+                        selected
+                    {% endif %}
+                >
+                    Medium
+                </option>
+
+                <option value="HIGH"
+                    {% if selected_priority == "HIGH" %}
+                        selected
+                    {% endif %}
+                >
+                    High
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="filter-field">
+
+            <label for="sort">
+                Sort by
+            </label>
+
+            <select name="sort" id="sort">
+
+                <option value="">
+                    Newest first
+                </option>
+
+                <option value="oldest"
+                    {% if selected_sort == "oldest" %}
+                        selected
+                    {% endif %}
+                >
+                    Oldest first
+                </option>
+
+                <option value="priority"
+                    {% if selected_sort == "priority" %}
+                        selected
+                    {% endif %}
+                >
+                    Priority
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="filter-actions">
+
+            <button type="submit">
+                Apply filters
+            </button>
+
+            <a
+                href="{% url 'ticket_list' %}"
+                class="button button-secondary"
+            >
+                Clear
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+
+<!-- TICKETS -->
+
+<div class="section-header">
+
+    <h2>Tickets</h2>
+
+    <span class="ticket-count">
+        {{ tickets|length }} ticket{{ tickets|length|pluralize }}
+    </span>
+
+</div>
+
+
+<div class="ticket-list">
 
     {% for ticket in tickets %}
 
-        <article>
+        <a
+            href="{% url 'ticket_detail' ticket.pk %}"
+            class="ticket-card"
+        >
 
-            <h2>
-                <a href="{% url 'ticket_detail' ticket.pk %}">
-                    {{ ticket.title }}
-                </a>
-            </h2>
+            <div class="ticket-main">
 
-            <p>
-                Priority: {{ ticket.get_priority_display }}
-            </p>
+                <div class="ticket-title-row">
 
-            <p>
-                Status: {{ ticket.get_status_display }}
-            </p>
+                    <h2>
+                        {{ ticket.title }}
+                    </h2>
 
-            <p>
-                Created: {{ ticket.created_at }}
-            </p>
+                    <span
+                        class="status status-{{ ticket.status|lower }}"
+                    >
+                        {{ ticket.get_status_display }}
+                    </span>
 
-        </article>
+                </div>
 
-        <hr>
+
+                <p class="ticket-description">
+
+                    {{ ticket.description|truncatewords:20 }}
+
+                </p>
+
+
+                <div class="ticket-meta">
+
+                    <span>
+                        By {{ ticket.created_by.username }}
+                    </span>
+
+                    <span>·</span>
+
+                    <span>
+                        {{ ticket.created_at|date:"M d, Y" }}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="ticket-side">
+
+                <span
+                    class="priority priority-{{ ticket.priority|lower }}"
+                >
+                    {{ ticket.get_priority_display }}
+                </span>
+
+                <span class="arrow">
+                    →
+                </span>
+
+            </div>
+
+        </a>
 
     {% empty %}
 
-        <p>No tickets yet.</p>
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                ◈
+            </div>
+
+            <h2>
+                No tickets found
+            </h2>
+
+            <p>
+                There are no tickets matching your filters.
+            </p>
+
+            <a
+                href="{% url 'ticket_create' %}"
+                class="button"
+            >
+                Create your first ticket
+            </a>
+
+        </div>
 
     {% endfor %}
 
-</body>
-</html>
+</div>
+
+{% endblock %}
