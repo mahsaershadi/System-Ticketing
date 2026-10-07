@@ -1,32 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Delete Ticket</title>
-</head>
+{% extends "base.html" %}
 
-<body>
+{% block title %}Delete Ticket · Tickify{% endblock %}
 
-    <h1>Delete Ticket</h1>
+{% block content %}
 
-    <p>
-        Are you sure you want to delete
-        "{{ ticket.title }}"?
-    </p>
+<div class="delete-page">
 
-    <form method="POST">
+    <div class="delete-card">
 
-        {% csrf_token %}
+        <div class="delete-icon">
+            !
+        </div>
 
-        <button type="submit">
-            Yes, delete
-        </button>
+        <h1>Delete this ticket?</h1>
 
-        <a href="{% url 'ticket_detail' ticket.pk %}">
-            Cancel
-        </a>
+        <p class="delete-warning">
+            You are about to permanently delete:
+        </p>
 
-    </form>
+        <div class="delete-ticket-preview">
+            <span class="preview-label">Ticket</span>
+            <strong>{{ ticket.title }}</strong>
+            <span class="preview-id">
+                #{{ ticket.id }}
+            </span>
+        </div>
 
-</body>
-</html>
+        <p class="delete-description">
+            This action cannot be undone. All information associated
+            with this ticket will be permanently removed.
+        </p>
+
+
+        <form method="post" class="delete-actions">
+
+            {% csrf_token %}
+
+            <a href="{% url 'ticket_detail' ticket.pk %}"
+               class="button button-secondary">
+                Cancel
+            </a>
+
+            <button type="submit"
+                    class="button button-danger">
+                Delete Ticket
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
