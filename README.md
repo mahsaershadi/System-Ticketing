@@ -12,23 +12,23 @@ Tickify allows authenticated users to create, view, edit, and delete tickets whi
 
 ### Dashboard
 
-![Tickify Dashboard](docs/dashboard.jpg)
+![Tickify Dashboard](docs/dashboard.jpeg)
 
 ### Create Ticket
 
-![Create Ticket](docs/create-ticket.jpg)
+![Create Ticket](docs/create-ticket.jpeg)
 
 ### Ticket Details
 
-![Ticket Details](docs/ticket-detail.jpg)
+![Ticket Details](docs/ticket-detail.jpeg)
 
 ### Edit Ticket
 
-![Edit Ticket](docs/edit-ticket.jpg)
+![Edit Ticket](docs/edit-ticket.jpeg)
 
 ### Delete Confirmation
 
-![Delete Ticket](docs/delete-ticket.jpg)
+![Delete Ticket](docs/delete-ticket.jpeg)
 
 ---
 
