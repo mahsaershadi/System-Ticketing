@@ -7,8 +7,12 @@ from .models import Ticket
 
 @login_required
 def ticket_list(request):
-    tickets = Ticket.objects.all()
-
+    if request.user.is_staff:
+        tickets = Ticket.objects.all()
+    else:
+        tickets = Ticket.objects.filter(
+            created_by=request.user
+        )
     status = request.GET.get("status")
     priority = request.GET.get("priority")
     sort = request.GET.get("sort")
